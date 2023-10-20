@@ -10,6 +10,17 @@ class SettingScreen extends StatefulWidget {
 class _SettingScreenState extends State<SettingScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("설정"),
+      ),
+      body: ListView(
+        children: const [
+          AboutListTile(
+            applicationVersion: "1.0",
+          ),
+        ],
+      ),
+    );
   }
 }
