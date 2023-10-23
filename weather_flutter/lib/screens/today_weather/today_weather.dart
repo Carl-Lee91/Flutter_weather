@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:weather_flutter/constant/sizes.dart';
 
 class TodayWeather extends ConsumerStatefulWidget {
   const TodayWeather({super.key});
@@ -11,6 +13,33 @@ class TodayWeather extends ConsumerStatefulWidget {
 class _TodayWeatherState extends ConsumerState<TodayWeather> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Scaffold(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: Sizes.size28,
+            vertical: Sizes.size28,
+          ),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Column(
+                    children: [
+                      FaIcon(
+                        FontAwesomeIcons.sun,
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: [],
+                  )
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
