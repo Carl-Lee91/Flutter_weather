@@ -27,7 +27,7 @@ class _MainAppBarState extends ConsumerState<MainAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: const Text("Weather"),
+      title: const Text("날씨"),
       leading: IconButton(
         icon: const FaIcon(FontAwesomeIcons.bars),
         onPressed: () {},

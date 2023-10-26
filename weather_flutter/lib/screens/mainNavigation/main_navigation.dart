@@ -67,19 +67,19 @@ class _MainNavigationState extends State<MainNavigation> {
             icon: FaIcon(
               FontAwesomeIcons.sun,
             ),
-            label: 'TodayWeather',
+            label: '오늘의 날씨',
           ),
           NavigationDestination(
             icon: FaIcon(
               FontAwesomeIcons.calendar,
             ),
-            label: 'WeekWeather',
+            label: '주간 날씨',
           ),
           NavigationDestination(
             icon: FaIcon(
               FontAwesomeIcons.mapLocation,
             ),
-            label: 'MapWeather',
+            label: '세계의 날씨',
           ),
         ],
       ),
