@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:weather_flutter/constant/sizes.dart';
+import 'package:weather_flutter/screens/widgets/today_weather.dart';
 
 class MapWeather extends ConsumerStatefulWidget {
   const MapWeather({super.key});
@@ -11,6 +13,19 @@ class MapWeather extends ConsumerStatefulWidget {
 class _MapWeatherState extends ConsumerState<MapWeather> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Scaffold(
+      body: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: Sizes.size28,
+          vertical: Sizes.size28,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TodaysWeather(),
+          ],
+        ),
+      ),
+    );
   }
 }
