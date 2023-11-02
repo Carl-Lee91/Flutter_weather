@@ -45,3 +45,6 @@ app.*.map.json
 
 # 참고용 파일
 /lib/skeleton
+
+# API파일
+*.env
