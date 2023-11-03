@@ -52,7 +52,7 @@ class _BasicWeatherState extends State<BasicWeather> {
               Column(
                 children: [
                   Text(
-                    "${now.month}월 ${now.day}일 ${now.hour} : ${now.minute}",
+                    "${now.month}월 ${now.day}일 ${now.hour} : ${now.minute.toString().padLeft(2, '0')}",
                     style: const TextStyle(fontSize: Sizes.size16),
                   ),
                   Gaps.v10,
