@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:weather_flutter/api/api_services.dart';
@@ -15,6 +17,7 @@ class BasicWeather extends StatefulWidget {
 }
 
 class _BasicWeatherState extends State<BasicWeather> {
+  final oneMinute = const Duration(minutes: 1);
   Future<WeatherModel>? weather;
 
   double? latitude;
@@ -38,6 +41,13 @@ class _BasicWeatherState extends State<BasicWeather> {
   void initState() {
     super.initState();
     _getLocationAndFetchWeather();
+
+    Timer.periodic(oneMinute, (Timer t) {
+      setState(() {
+        now = DateTime.now();
+      });
+      _getLocationAndFetchWeather();
+    });
   }
 
   @override
