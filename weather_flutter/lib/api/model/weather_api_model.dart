@@ -1,7 +1,8 @@
 class WeatherModel {
   final List<WeatherDetail> weather;
-  final double temp, feelTemp, minTemp, maxTemp, windSpeed;
+  final double temp, feelTemp, minTemp, maxTemp;
   final int id, pressure, humidity, windDeg;
+  final dynamic windSpeed;
   final String cityName;
 
   WeatherModel.fromJson(Map<String, dynamic> json)
