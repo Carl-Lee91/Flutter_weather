@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:weather_flutter/api/api_services.dart';
-import 'package:weather_flutter/api/model/weather_api_model.dart';
+import 'package:weather_flutter/api/model/basic_weather_api_model.dart';
 import 'package:weather_flutter/constant/sizes.dart';
 import 'package:weather_flutter/screens/widgets/basic_weather.dart';
 
@@ -14,7 +14,7 @@ class WeekWeather extends ConsumerStatefulWidget {
 }
 
 class _WeekWeatherState extends ConsumerState<WeekWeather> {
-  Future<WeatherModel>? weather;
+  Future<BasicWeatherModel>? weather;
 
   double? latitude;
   double? longitude;
@@ -28,7 +28,7 @@ class _WeekWeatherState extends ConsumerState<WeekWeather> {
       longitude = position.longitude;
     });
 
-    weather = ApiService.fetchWeatherInfo(latitude!, longitude!);
+    weather = ApiServices.fetchBasicWeatherInfo(latitude!, longitude!);
   }
 
   @override

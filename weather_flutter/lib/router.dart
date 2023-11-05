@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:weather_flutter/screens/greetings.dart';
-import 'package:weather_flutter/screens/mainnavigation/main_navigation.dart';
+import 'package:weather_flutter/screens/main_navigation/main_navigation.dart';
 
 final routeProvider = Provider(
   (ref) {

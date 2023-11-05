@@ -1,9 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:weather_flutter/api/api_services.dart';
-import 'package:weather_flutter/api/model/weather_api_model.dart';
+import 'package:weather_flutter/api/model/basic_weather_api_model.dart';
 import 'package:weather_flutter/constant/gaps.dart';
 import 'package:weather_flutter/constant/sizes.dart';
 
@@ -17,8 +18,7 @@ class BasicWeather extends StatefulWidget {
 }
 
 class _BasicWeatherState extends State<BasicWeather> {
-  final oneMinute = const Duration(minutes: 1);
-  Future<WeatherModel>? weather;
+  Future<BasicWeatherModel>? weather;
 
   double? latitude;
   double? longitude;
@@ -32,7 +32,7 @@ class _BasicWeatherState extends State<BasicWeather> {
       longitude = position.longitude;
     });
 
-    weather = ApiService.fetchWeatherInfo(latitude!, longitude!);
+    weather = ApiServices.fetchBasicWeatherInfo(latitude!, longitude!);
   }
 
   DateTime now = DateTime.now();
@@ -41,12 +41,13 @@ class _BasicWeatherState extends State<BasicWeather> {
   void initState() {
     super.initState();
     _getLocationAndFetchWeather();
+    now = DateTime.now();
+  }
 
-    Timer.periodic(oneMinute, (Timer t) {
-      setState(() {
-        now = DateTime.now();
-      });
+  Future<void> _refreshTimeAndWeather() async {
+    setState(() {
       _getLocationAndFetchWeather();
+      now = DateTime.now();
     });
   }
 
@@ -61,9 +62,20 @@ class _BasicWeatherState extends State<BasicWeather> {
             children: [
               Column(
                 children: [
-                  Text(
-                    "${now.month}월 ${now.day}일 ${now.hour} : ${now.minute.toString().padLeft(2, '0')}",
-                    style: const TextStyle(fontSize: Sizes.size16),
+                  Row(
+                    children: [
+                      Text(
+                        "${now.month}월 ${now.day}일 ${now.hour} : ${now.minute.toString().padLeft(2, '0')}",
+                        style: const TextStyle(fontSize: Sizes.size16),
+                      ),
+                      IconButton(
+                        onPressed: _refreshTimeAndWeather,
+                        icon: const FaIcon(
+                          FontAwesomeIcons.arrowsRotate,
+                          size: Sizes.size16,
+                        ),
+                      )
+                    ],
                   ),
                   Gaps.v10,
                   Row(
@@ -116,7 +128,9 @@ class _BasicWeatherState extends State<BasicWeather> {
             ],
           );
         }
-        return const Text("Loading...");
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
       },
     );
   }

@@ -1,13 +1,13 @@
-class WeatherModel {
-  final List<WeatherDetail> weather;
+class BasicWeatherModel {
+  final List<BasicWeatherDetail> weather;
   final double temp, feelTemp, minTemp, maxTemp;
   final int id, pressure, humidity, windDeg;
   final dynamic windSpeed;
   final String cityName;
 
-  WeatherModel.fromJson(Map<String, dynamic> json)
+  BasicWeatherModel.fromJson(Map<String, dynamic> json)
       : weather = (json["weather"] as List<dynamic>)
-            .map((weatherJson) => WeatherDetail.fromJson(weatherJson))
+            .map((weatherJson) => BasicWeatherDetail.fromJson(weatherJson))
             .toList(),
         temp = json["main"]["temp"],
         feelTemp = json["main"]["feels_like"],
@@ -21,11 +21,11 @@ class WeatherModel {
         cityName = json["name"];
 }
 
-class WeatherDetail {
+class BasicWeatherDetail {
   final int weatherId;
   final String description, icon;
 
-  WeatherDetail.fromJson(Map<String, dynamic> json)
+  BasicWeatherDetail.fromJson(Map<String, dynamic> json)
       : weatherId = json["id"],
         description = json["description"],
         icon = json["icon"];
