@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:weather_flutter/api/api_services.dart';
-import 'package:weather_flutter/api/model/daily_weather_api_model.dart';
+import 'package:weather_flutter/screens/today_weather/model/daily_weather_api_model.dart';
 import 'package:weather_flutter/constant/gaps.dart';
 import 'package:weather_flutter/constant/sizes.dart';
-import 'package:weather_flutter/screens/widgets/basic_weather.dart';
+import 'package:weather_flutter/screens/widgets/basic_weather/view/basic_weather.dart';
 
 class TodayWeather extends ConsumerStatefulWidget {
   const TodayWeather({super.key});

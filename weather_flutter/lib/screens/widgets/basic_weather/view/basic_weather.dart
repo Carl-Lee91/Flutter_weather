@@ -1,62 +1,57 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:weather_flutter/api/api_services.dart';
-import 'package:weather_flutter/api/model/basic_weather_api_model.dart';
+import 'package:weather_flutter/screens/widgets/basic_weather/model/basic_weather_api_model.dart';
 import 'package:weather_flutter/constant/gaps.dart';
 import 'package:weather_flutter/constant/sizes.dart';
+import 'package:weather_flutter/screens/widgets/basic_weather/view_model/basic_weather_view_model.dart';
 
-class BasicWeather extends StatefulWidget {
+class BasicWeather extends ConsumerStatefulWidget {
   const BasicWeather({
     super.key,
   });
 
   @override
-  State<BasicWeather> createState() => _BasicWeatherState();
+  ConsumerState<BasicWeather> createState() => _BasicWeatherState();
 }
 
-class _BasicWeatherState extends State<BasicWeather> {
+class _BasicWeatherState extends ConsumerState<BasicWeather> {
   Future<BasicWeatherModel>? weather;
 
-  double? latitude;
-  double? longitude;
-
-  Future<void> _getLocationAndFetchWeather() async {
-    Position position = await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.best,
-    );
-    setState(() {
-      latitude = position.latitude;
-      longitude = position.longitude;
-    });
-
-    weather = ApiServices.fetchBasicWeatherInfo(latitude!, longitude!);
-  }
-
   DateTime now = DateTime.now();
+
+  Future<void> _initWeather() async {
+    weather = ref.read(basicWeatherProvider.notifier).fetchBasicWeatherInfo();
+  }
 
   @override
   void initState() {
     super.initState();
-    _getLocationAndFetchWeather();
+    _initWeather();
     now = DateTime.now();
   }
 
   Future<void> _refreshTimeAndWeather() async {
     setState(() {
-      _getLocationAndFetchWeather();
+      _initWeather();
       now = DateTime.now();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
+    return FutureBuilder<BasicWeatherModel>(
       future: weather,
       builder: (context, snapshot) {
-        if (snapshot.hasData) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (snapshot.hasError) {
+          return Text('에러발생: ${snapshot.error}');
+        } else if (snapshot.hasData) {
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

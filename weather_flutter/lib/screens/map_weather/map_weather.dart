@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weather_flutter/constant/sizes.dart';
-import 'package:weather_flutter/screens/widgets/basic_weather.dart';
+import 'package:weather_flutter/screens/widgets/basic_weather/view/basic_weather.dart';
 
 class MapWeather extends ConsumerStatefulWidget {
   const MapWeather({super.key});
