@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:weather_flutter/screens/today_weather/model/daily_weather_api_model.dart';
+import 'package:weather_flutter/screens/today_weather/model/today_weather_api_model.dart';
 
 import 'package:http/http.dart' as http;
 
@@ -30,6 +30,7 @@ class DailyWeatherViewModel extends AsyncNotifier<List<DailyWeatherModel>> {
     final response = await http.get(url);
     if (response.statusCode == 200) {
       final Map<String, dynamic> dailyWeathers = jsonDecode(response.body);
+      _dailyWeatherModelInstances = [];
       for (var dailyWeather in dailyWeathers["list"]) {
         final instance = DailyWeatherModel.fromJson(dailyWeather);
         _dailyWeatherModelInstances.add(instance);

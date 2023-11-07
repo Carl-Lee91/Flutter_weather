@@ -1,6 +1,6 @@
 class DailyWeatherModel {
   final List<DailyWeatherDetail> weather;
-  final double temp;
+  final num temp;
   final String dateTime;
 
   DailyWeatherModel.fromJson(Map<String, dynamic> json)
