@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:weather_flutter/screens/today_weather/model/daily_weather_api_model.dart';
+import 'package:weather_flutter/screens/today_weather/model/today_air_pollution_api_model.dart';
+import 'package:weather_flutter/screens/today_weather/model/today_weather_api_model.dart';
 import 'package:weather_flutter/constant/gaps.dart';
 import 'package:weather_flutter/constant/sizes.dart';
+import 'package:weather_flutter/screens/today_weather/view_model/today_air_pollution_view_model.dart';
 import 'package:weather_flutter/screens/today_weather/view_model/today_weather_view_model.dart';
 import 'package:weather_flutter/screens/widgets/basic_weather/view/basic_weather.dart';
 
@@ -15,16 +17,19 @@ class TodayWeather extends ConsumerStatefulWidget {
 
 class _TodayWeatherState extends ConsumerState<TodayWeather> {
   Future<List<DailyWeatherModel>>? dailyWeather;
+  Future<AirPollutionModel>? airPollution;
 
-  Future<void> _initDailyWeather() async {
+  Future<void> _initDailyWeatherAndAirPollution() async {
     dailyWeather =
         ref.read(dailyWeatherProvider.notifier).fetchDailyWeatherInfo();
+    airPollution =
+        ref.read(airPollutionProvider.notifier).fetchAirPollutionInfo();
   }
 
   @override
   void initState() {
     super.initState();
-    _initDailyWeather();
+    _initDailyWeatherAndAirPollution();
   }
 
   @override
@@ -32,7 +37,7 @@ class _TodayWeatherState extends ConsumerState<TodayWeather> {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(
-          horizontal: Sizes.size28,
+          horizontal: Sizes.size12,
           vertical: Sizes.size28,
         ),
         child: Column(
@@ -44,7 +49,17 @@ class _TodayWeatherState extends ConsumerState<TodayWeather> {
               future: dailyWeather,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  return Expanded(
+                  return Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: Sizes.size10,
+                      vertical: Sizes.size10,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColor.withOpacity(0.05),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    width: double.infinity,
+                    height: MediaQuery.of(context).size.height * 0.16,
                     child: ListView.separated(
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
@@ -70,9 +85,30 @@ class _TodayWeatherState extends ConsumerState<TodayWeather> {
                         itemCount: snapshot.data!.length),
                   );
                 }
-                return const CircularProgressIndicator();
+                return const Text("");
               },
             ),
+            Gaps.v40,
+            /* FutureBuilder(
+              future: airPollution,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: Sizes.size10,
+                      vertical: Sizes.size10,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColor.withOpacity(0.05),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    width: double.infinity,
+                    height: MediaQuery.of(context).size.height * 0.16,
+                    child: ,);
+                }
+                throw const Text("");
+              },
+            ) */
           ],
         ),
       ),
