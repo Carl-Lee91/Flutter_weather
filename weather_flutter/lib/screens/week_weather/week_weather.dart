@@ -17,7 +17,7 @@ class _WeekWeatherState extends ConsumerState<WeekWeather> {
     return const Scaffold(
       body: Padding(
         padding: EdgeInsets.symmetric(
-          horizontal: Sizes.size28,
+          horizontal: Sizes.size12,
           vertical: Sizes.size28,
         ),
         child: Column(
