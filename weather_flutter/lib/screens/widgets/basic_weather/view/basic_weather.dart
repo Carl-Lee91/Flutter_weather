@@ -107,7 +107,7 @@ class _BasicWeatherState extends ConsumerState<BasicWeather> {
                     snapshot.data!.weather
                         .map((weather) => weather.description)
                         .join(", "),
-                    style: const TextStyle(fontSize: Sizes.size32),
+                    style: const TextStyle(fontSize: Sizes.size20),
                   ),
                   Gaps.v10,
                   Text(
