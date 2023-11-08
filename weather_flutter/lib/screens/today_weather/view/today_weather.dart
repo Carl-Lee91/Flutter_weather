@@ -89,26 +89,97 @@ class _TodayWeatherState extends ConsumerState<TodayWeather> {
               },
             ),
             Gaps.v40,
-            /* FutureBuilder(
+            FutureBuilder(
               future: airPollution,
               builder: (context, snapshot) {
-                if (snapshot.hasData) {
+                if (snapshot.hasError) {
+                  return Text('에러발생: ${snapshot.error}');
+                } else if (snapshot.hasData) {
                   return Container(
                     padding: const EdgeInsets.symmetric(
                       horizontal: Sizes.size10,
-                      vertical: Sizes.size10,
+                      vertical: Sizes.size8,
                     ),
                     decoration: BoxDecoration(
                       color: Theme.of(context).primaryColor.withOpacity(0.05),
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    width: double.infinity,
-                    height: MediaQuery.of(context).size.height * 0.16,
-                    child: ,);
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Column(
+                          children: [
+                            const Text(
+                              "미세먼지",
+                              style: TextStyle(fontSize: Sizes.size16),
+                            ),
+                            Gaps.v10,
+                            Container(
+                              width: 30,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                border: Border.all(
+                                    width: 3,
+                                    color: Theme.of(context)
+                                        .primaryColor
+                                        .withOpacity(0.5)),
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(
+                                    100,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Gaps.v10,
+                            Text(
+                              snapshot.data!.airPollution
+                                  .map((airPollution) => airPollution.pm2_5)
+                                  .join(", "),
+                              style: const TextStyle(fontSize: Sizes.size16),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            const Text(
+                              "초미세먼지",
+                              style: TextStyle(fontSize: Sizes.size16),
+                            ),
+                            Gaps.v10,
+                            Container(
+                              width: 30,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                border: Border.all(
+                                    width: 3,
+                                    color: Theme.of(context)
+                                        .primaryColor
+                                        .withOpacity(0.5)),
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(
+                                    100,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Gaps.v10,
+                            Text(
+                              snapshot.data!.airPollution
+                                  .map((airPollution) => airPollution.pm10)
+                                  .join(", "),
+                              style: const TextStyle(fontSize: Sizes.size16),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  );
                 }
-                throw const Text("");
+                return const Text("");
               },
-            ) */
+            )
           ],
         ),
       ),
