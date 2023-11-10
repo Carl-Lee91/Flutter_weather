@@ -81,7 +81,6 @@ class _BasicWeatherState extends ConsumerState<BasicWeather> {
                         )
                       ],
                     ),
-                    Gaps.v10,
                     Row(
                       children: [
                         Text(
@@ -90,7 +89,7 @@ class _BasicWeatherState extends ConsumerState<BasicWeather> {
                         ),
                       ],
                     ),
-                    Gaps.v10,
+                    Gaps.v5,
                     Text(
                       snapshot.data!.cityName,
                       style: const TextStyle(fontSize: Sizes.size20),
