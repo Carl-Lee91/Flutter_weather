@@ -5,7 +5,7 @@ import 'package:weather_flutter/screens/main_navigation/widgets/main_appbar.dart
 import 'package:weather_flutter/screens/main_navigation/widgets/side_menu.dart';
 import 'package:weather_flutter/screens/map_weather/map_weather.dart';
 import 'package:weather_flutter/screens/today_weather/view/today_weather.dart';
-import 'package:weather_flutter/screens/week_weather/week_weather.dart';
+import 'package:weather_flutter/screens/week_weather/view/week_weather.dart';
 
 class MainNavigation extends StatefulWidget {
   static const routeName = "mainNavigation";
