@@ -25,8 +25,9 @@ class SideMenu extends StatelessWidget {
             ),
           ),
           ListTile(
-            title: const Text("About"),
-            onTap: () {},
+            title: const Text("Made By...🚀"),
+            subtitle: const Text("Carl Lee.. "),
+            tileColor: Theme.of(context).primaryColor.withOpacity(0.3),
           ),
         ],
       ),
