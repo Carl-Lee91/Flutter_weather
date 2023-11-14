@@ -85,7 +85,7 @@ class _WeekWeatherState extends ConsumerState<WeekWeather> {
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
                                 horizontal: Sizes.size14,
-                                vertical: Sizes.size28,
+                                vertical: Sizes.size12,
                               ),
                               child: Column(
                                 children: [
