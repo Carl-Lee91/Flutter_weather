@@ -48,6 +48,8 @@ dependencies:
   permission_handler: ^11.0.1
   intl: ^0.18.1
   sleek_circular_slider: ^2.0.1
+  change_app_package_name: ^1.1.0
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   flutter_test:
