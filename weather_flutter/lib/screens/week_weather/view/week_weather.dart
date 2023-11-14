@@ -31,22 +31,19 @@ class _WeekWeatherState extends ConsumerState<WeekWeather> {
   @override
   Widget build(BuildContext context) {
     DateTime now = DateTime.now();
-    DateTime second = now.add(const Duration(days: 1));
-    DateTime third = second.add(const Duration(days: 1));
-    DateTime fourth = third.add(const Duration(days: 1));
-    DateTime fifth = fourth.add(const Duration(days: 1));
-    DateTime sixth = fifth.add(const Duration(days: 1));
-    DateTime seventh = sixth.add(const Duration(days: 1));
-    DateTime eighth = seventh.add(const Duration(days: 1));
+    List<String> formattedDates = List.generate(8, (index) {
+      DateTime date = now.add(Duration(days: index));
+      return DateFormat("MM/dd").format(date);
+    });
 
-    String formattedNow = DateFormat("MM/dd").format(now);
-    String formattedSecond = DateFormat("MM/dd").format(second);
-    String formattedThird = DateFormat("MM/dd").format(third);
-    String formattedFourth = DateFormat("MM/dd").format(fourth);
-    String formattedFifth = DateFormat("MM/dd").format(fifth);
-    String formattedSixth = DateFormat("MM/dd").format(sixth);
-    String formattedSeventh = DateFormat("MM/dd").format(seventh);
-    String formattedEighth = DateFormat("MM/dd").format(eighth);
+    String formattedNow = formattedDates[0];
+    String formattedSecond = formattedDates[1];
+    String formattedThird = formattedDates[2];
+    String formattedFourth = formattedDates[3];
+    String formattedFifth = formattedDates[4];
+    String formattedSixth = formattedDates[5];
+    String formattedSeventh = formattedDates[6];
+    String formattedEighth = formattedDates[7];
 
     return Scaffold(
       body: Padding(
