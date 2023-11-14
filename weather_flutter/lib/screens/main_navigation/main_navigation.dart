@@ -3,7 +3,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:weather_flutter/screens/main_navigation/widgets/main_appbar.dart';
 import 'package:weather_flutter/screens/main_navigation/widgets/side_menu.dart';
-import 'package:weather_flutter/screens/map_weather/map_weather.dart';
 import 'package:weather_flutter/screens/today_weather/view/today_weather.dart';
 import 'package:weather_flutter/screens/week_weather/view/week_weather.dart';
 
@@ -25,7 +24,6 @@ class _MainNavigationState extends State<MainNavigation> {
   final List<String> _tabs = [
     "todayWeather",
     "weekWeather",
-    "mapWeather",
   ];
 
   late int _selectedIndex = _tabs.indexOf(widget.tab);
@@ -52,10 +50,6 @@ class _MainNavigationState extends State<MainNavigation> {
             offstage: _selectedIndex != 1,
             child: const WeekWeather(),
           ),
-          Offstage(
-            offstage: _selectedIndex != 2,
-            child: const MapWeather(),
-          ),
         ],
       ),
       bottomNavigationBar: NavigationBar(
@@ -76,12 +70,6 @@ class _MainNavigationState extends State<MainNavigation> {
               FontAwesomeIcons.calendar,
             ),
             label: '주간 날씨',
-          ),
-          NavigationDestination(
-            icon: FaIcon(
-              FontAwesomeIcons.mapLocation,
-            ),
-            label: '세계의 날씨',
           ),
         ],
       ),

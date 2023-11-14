@@ -14,7 +14,7 @@ final routeProvider = Provider(
           builder: (context, state) => const GreetingsScreen(),
         ),
         GoRoute(
-          path: "/:tab(todayWeather|weekWeather|mapWeather)",
+          path: "/:tab(todayWeather|weekWeather)",
           name: MainNavigation.routeName,
           builder: (context, state) {
             final tab = state.pathParameters["tab"]!;
