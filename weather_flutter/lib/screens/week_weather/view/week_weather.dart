@@ -296,7 +296,7 @@ class SimpleWeather extends SliverPersistentHeaderDelegate {
     if (shrinkOffset == 0) {
       return Center(
         child: Container(
-          color: Colors.grey.shade800,
+          color: Theme.of(context).primaryColor.withOpacity(0.05),
           child: const Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -308,7 +308,7 @@ class SimpleWeather extends SliverPersistentHeaderDelegate {
     } else {
       return Center(
         child: Container(
-          color: Colors.grey.shade800,
+          color: Theme.of(context).primaryColor,
           child: const Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
