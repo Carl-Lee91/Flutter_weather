@@ -17,7 +17,7 @@ class _SettingScreenState extends State<SettingScreen> {
       body: ListView(
         children: const [
           AboutListTile(
-            applicationVersion: "1.0",
+            applicationVersion: "1.0.0",
           ),
         ],
       ),
