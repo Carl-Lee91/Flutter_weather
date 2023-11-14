@@ -8,7 +8,10 @@ class BasicWeatherModel {
       temp,
       feelTemp,
       minTemp,
-      maxTemp;
+      maxTemp,
+      visibillity,
+      sunrise,
+      sunset;
   final String cityName;
 
   BasicWeatherModel.fromJson(Map<String, dynamic> json)
@@ -24,6 +27,9 @@ class BasicWeatherModel {
         windSpeed = json["wind"]["speed"],
         windDeg = json["wind"]["deg"],
         id = json["id"],
+        visibillity = json["visibillity"] ?? 0,
+        sunrise = json["sys"]["sunrise"],
+        sunset = json["sys"]["sunset"],
         cityName = json["name"];
 }
 
